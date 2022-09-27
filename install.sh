@@ -8,3 +8,4 @@ sudo apt install ros-galactic-robot-localization
 sudo apt install ros-galactic-slam-toolbox
 sudo apt install ros-galactic-joint-state-publisher-gui
 sudo apt install ros-galactic-xacro
+sudo apt install ros-galactic-teleop-twist-keyboard

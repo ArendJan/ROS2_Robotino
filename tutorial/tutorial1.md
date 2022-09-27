@@ -20,7 +20,7 @@ To download the package, you have to install `Git` and `SSH` tools first. Press 
 ```
 sudo apt update
 sudo apt upgrade
-sudo apt install git
+sudo apt install git openssh-client
 ```
 ---
 
@@ -95,6 +95,37 @@ Please add the command to `.zshrc` or `.bashrc`.
 ---
 Try to run this command to make sure the installation is success.
 ```
-ros2 run demo_nodes_cpp talker
+ros2
+```
+
+If you can see the following output, it means you have installed ROS2 Galactic suceesfully! Contgratulations!
+```
+usage: ros2 [-h] Call `ros2 <command> -h` for more detailed usage. ...
+
+ros2 is an extensible command-line tool for ROS 2.
+
+optional arguments:
+  -h, --help            show this help message and exit
+
+Commands:
+  action     Various action related sub-commands
+  bag        Various rosbag related sub-commands
+  component  Various component related sub-commands
+  daemon     Various daemon related sub-commands
+  doctor     Check ROS setup and other potential issues
+  interface  Show information about ROS interfaces
+  launch     Run a launch file
+  lifecycle  Various lifecycle related sub-commands
+  multicast  Various multicast related sub-commands
+  node       Various node related sub-commands
+  param      Various param related sub-commands
+  pkg        Various package related sub-commands
+  run        Run a package specific executable
+  security   Various security related sub-commands
+  service    Various service related sub-commands
+  topic      Various topic related sub-commands
+  wtf        Use `wtf` as alias to `doctor`
+
+  Call `ros2 <command> -h` for more detailed usage.
 ```
 
