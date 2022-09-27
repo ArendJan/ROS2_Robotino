@@ -51,7 +51,7 @@ you should be able to see all of the details about the robot.
 
 ![](screenshoot.png)
 
-Please make sure the battery is charged (voltage should be about 25.4V) before you disconnect it from the charger.
+Please make sure the battery is charged before you disconnect it from the charger.
 
 If you find the `batteryLow` field is True, please charge it as soon as possible to prevent damage to the hardware.
 
