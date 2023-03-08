@@ -12,7 +12,7 @@ You can follow this [tutorial](https://ubuntu.com/tutorials/install-ubuntu-deskt
 Or you can follow this [tutorial](https://ubuntu.com/tutorials/how-to-run-ubuntu-desktop-on-a-virtual-machine-using-virtualbox#1-overview) to install Ubuntu 20.04 with VirtualBox.
 
 
-## Dependencie
+## Dependency
 ---
 
 ### Install Tools
