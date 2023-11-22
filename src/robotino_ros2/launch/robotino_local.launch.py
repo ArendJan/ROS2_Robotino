@@ -49,11 +49,15 @@ def generate_launch_description():
         # namespace=ns,
         parameters=[params_path]
     ))
+
+    # add a tf transform for the slam system
     ld.add_action(Node(package='tf2_ros', executable='static_transform_publisher', output='screen', arguments=["0", "0", "0", "0", "0", "0", "base_link", "laser"]))
+
+    # Run the /cmd_vel controllers and other nodes
     ld.add_action(IncludeLaunchDescription(
       PythonLaunchDescriptionSource([os.path.join(
          get_package_share_directory('robotino_ros2'), 'launch'),
-         '/robotino_remote.launch.py']), arguments=[{"robotino_ip":"localhost"}]
+         '/robotino_remote.launch.py']), launch_arguments={"robotino_ip":"localhost"}.items()
       )
 )
     return ld

@@ -82,34 +82,35 @@ def generate_launch_description():
         robot_localization_node,
         rviz_node,
         start_async_slam_toolbox_node,
-        Node(
-            package='robotino_ros2',
-            namespace='robotino',
-            executable='power_node',
-            name='power'
-        ),
-        Node(
-            package='robotino_ros2',
-            namespace='robotino',
-            executable='controller_node',
-            name='controller'
-        ),
-        Node(
-            package='robotino_ros2',
-            namespace='robotino',
-            executable='service_node',
-            name='service'
-        ),
-        Node(
-            package='robotino_ros2',
-            namespace='robotino',
-            executable='io_node',
-            name='io'
-        ),
-        Node(
-            package='robotino_ros2',
-            namespace='robotino',
-            executable='omnidrive_node',
-            name='omnidrive'
-        )
+        # They are running on the robotino:
+        # Node(
+        #     package='robotino_ros2',
+        #     namespace='robotino',
+        #     executable='power_node',
+        #     name='power'
+        # ),
+        # Node(
+        #     package='robotino_ros2',
+        #     namespace='robotino',
+        #     executable='controller_node',
+        #     name='controller'
+        # ),
+        # Node(
+        #     package='robotino_ros2',
+        #     namespace='robotino',
+        #     executable='service_node',
+        #     name='service'
+        # ),
+        # Node(
+        #     package='robotino_ros2',
+        #     namespace='robotino',
+        #     executable='io_node',
+        #     name='io'
+        # ),
+        # Node(
+        #     package='robotino_ros2',
+        #     namespace='robotino',
+        #     executable='omnidrive_node',
+        #     name='omnidrive'
+        # )
     ])
