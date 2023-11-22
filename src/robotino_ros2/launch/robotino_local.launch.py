@@ -48,4 +48,5 @@ def generate_launch_description():
         # namespace=ns,
         parameters=[params_path]
     ))
+    ld.add_action(Node(package='tf2_ros', executable='static_transform_publisher', output='screen', arguments=["0", "0", "0", "0", "0", "0", "base_link", "laser"]))
     return ld
