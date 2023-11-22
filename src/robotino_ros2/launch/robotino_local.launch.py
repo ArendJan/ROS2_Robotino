@@ -53,7 +53,7 @@ def generate_launch_description():
     ld.add_action(IncludeLaunchDescription(
       PythonLaunchDescriptionSource([os.path.join(
          get_package_share_directory('robotino_ros2'), 'launch'),
-         '/robotino_remote.launch.py'])
+         '/robotino_remote.launch.py']), arguments=[{"robotino_ip":"localhost"}]
       )
 )
     return ld
