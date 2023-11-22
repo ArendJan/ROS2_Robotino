@@ -4,7 +4,8 @@ from launch.actions import OpaqueFunction
 from launch.actions import SetLaunchConfiguration
 from launch.substitutions import LaunchConfiguration
 from launch.actions import DeclareLaunchArgument
-
+from launch.actions import IncludeLaunchDescription
+from launch.launch_description_sources import PythonLaunchDescriptionSource
 import os
 
 from ament_index_python.packages import get_package_share_directory
@@ -49,4 +50,10 @@ def generate_launch_description():
         parameters=[params_path]
     ))
     ld.add_action(Node(package='tf2_ros', executable='static_transform_publisher', output='screen', arguments=["0", "0", "0", "0", "0", "0", "base_link", "laser"]))
+    ld.add_action(IncludeLaunchDescription(
+      PythonLaunchDescriptionSource([os.path.join(
+         get_package_share_directory('robotino_ros2'), 'launch'),
+         '/robotino_remote.launch.py'])
+      )
+)
     return ld
