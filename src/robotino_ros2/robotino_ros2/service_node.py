@@ -6,17 +6,16 @@ from robotino_ros2_msg.msg import Service, ServiceGroup
 import requests
 
 
-ip = 'http://' + ip_address
-
 
 class ServiceNode(Node):
     def __init__(self):
         super().__init__('service_node')
+        self.ip = ip_address(self)
         self.services_srv = self.create_service(
             Services, 'services', callback=self.get_services)
 
     def get_services(self, request, response):
-        result = requests.get(ip + '/data/services').json()
+        result = requests.get(f"http://{self.ip}/data/services").json()
         response_array = []
         for sub_service_group in result:
             service_group_array = []

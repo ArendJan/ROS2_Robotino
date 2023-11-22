@@ -9,7 +9,6 @@ from geometry_msgs.msg import TransformStamped
 import math
 import datetime
 
-ip = "http://" + ip_address
 def quaternion_from_euler(roll, pitch, yaw):
     """
     Converts euler roll, pitch, yaw to quaternion (w in last place)
@@ -34,6 +33,7 @@ def quaternion_from_euler(roll, pitch, yaw):
 class ControllerNode(Node):
     def __init__(self):
         super().__init__("controller_node")
+        self.ip = ip_address(self)
         self.controller_info_srv = self.create_service(
             ControllerInfo, 'controller_info', callback=self.get_controller_info)
         self.odom_pub = self.create_publisher(Odometry,"odom",50)
@@ -43,7 +43,7 @@ class ControllerNode(Node):
             self.odometry_callback()
 
     def get_controller_info(self, request, response):
-        result = requests.get(ip + "/data/controllerinfo").json()
+        result = requests.get(f"http://{self.ip}/data/controllerinfo").json()
         response.type = result["TYPE"]
         response.hardware_payload = result["payload"]["hardware"]
         response.software_payload = result["payload"]["software"]
@@ -51,7 +51,7 @@ class ControllerNode(Node):
 
     def odometry_callback(self):
         try:
-            result = requests.get(ip + "/data/odometry").json()
+            result = requests.get(f"http://{self.ip}/data/odometry").json()
             x = result[0]
             y = result[1]
             rot = result[2]

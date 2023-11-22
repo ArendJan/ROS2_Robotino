@@ -7,13 +7,13 @@ import requests
 import json
 
 
-ip = "http://" + ip_address
 headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
 
 
 class OmnidriveNode(Node):
     def __init__(self):
         super().__init__("omnidrive_node")
+        self.ip = ip_address(self)
         self.omnidrive_subscription = self.create_subscription(
             Omnidrive, 'omnidriver', self.omnidrive_callback, 10)
         self.teleop_drive_subscription = self.create_subscription(
@@ -21,7 +21,7 @@ class OmnidriveNode(Node):
 
     def omnidrive_callback(self, msg):
         request_json = [msg.vx, msg.vy, msg.omega]
-        requests.post(ip+"/data/omnidrive",
+        requests.post(f"http://{self.ip}/data/omnidrive",
                       data=json.dumps(request_json), headers=headers)
 
     def teleop_drive_callback(self, msg):
@@ -30,7 +30,7 @@ class OmnidriveNode(Node):
         z = msg.angular.z * 0.3
         request_json = [x, y, z]
         print(request_json)
-        requests.post(ip+"/data/omnidrive",
+        requests.post(f"http://{self.ip}/data/omnidrive",
                       data=json.dumps(request_json), headers=headers)
 
 

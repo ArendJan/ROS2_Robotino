@@ -5,19 +5,19 @@ from robotino_ros2_msg.srv import PowerManagement, Charger
 import requests
 
 
-ip = "http://" + ip_address
 
 
 class PowerNode(Node):
     def __init__(self):
         super().__init__("power_node")
+        self.ip = ip_address(self)
         self.power_management_srv = self.create_service(
             PowerManagement, 'power_management', callback=self.get_power_management)
         self.charger_srv = self.create_service(
             Charger, 'charger', callback=self.get_charger_info)
 
     def get_power_management(self, request, response):
-        result = requests.get(ip + "/data/powermanagement").json()
+        result = requests.get(f"http://{self.ip}/data/powermanagement").json()
         response.battery_low = result["batteryLow"]
         response.battery_low_shutdown_counter = result["batteryLowShutdownCounter"]
         response.battery_type = result["batteryType"]
@@ -27,7 +27,7 @@ class PowerNode(Node):
         return response
 
     def get_charger_info(self, request, response):
-        result = requests.get(ip + "/data/charger0").json()
+        result = requests.get(f"http://{self.ip}/data/charger0").json()
         print(result)
         response.bat1_temp = result["bat1temp"]
         response.bat2_temp = result["bat2temp"]
