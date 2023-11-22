@@ -18,6 +18,7 @@ class PowerNode(Node):
 
     def get_power_management(self, request, response):
         result = requests.get(f"http://{self.ip}/data/powermanagement").json()
+        print(result)
         response.battery_low = result["batteryLow"]
         response.battery_low_shutdown_counter = result["batteryLowShutdownCounter"]
         response.battery_type = result["batteryType"]
@@ -33,7 +34,7 @@ class PowerNode(Node):
         response.bat2_temp = result["bat2temp"]
         response.battery_voltage = result["batteryVoltage"]
         response.charger_number = result["chargerNumber"]
-        response.charging_current = result["chargingCurrent"]
+        response.charging_current = float(result["chargingCurrent"])
         response.state = result["state"]
         response.state_number = result["state_number"]
         response.time = result["time"]
